@@ -8,7 +8,7 @@ The patrons keep forgetting which character they're talking to.
 
 ## Installing DementiaLock
 
-**Available on (GameBanana)[https://gamebanana.com/sounds/91070]**, please use the [Deadlock Mod Manager](https://deadlockmods.app/) to install.
+**Available on [GameBanana](https://gamebanana.com/sounds/91070)**, please use the [Deadlock Mod Manager](https://deadlockmods.app/) to install.
 
 # Contributing Voicelines
 
