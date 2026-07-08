@@ -46,6 +46,14 @@ Technically, we can add as many lines as we want. **However**, once there are as
 
 No edits may be made to `"Minaaaa Haaaaaa, rise up and take what you deserve!"`. Even the dementia-addled patrons can't forget the perfect voiceline. You can still give that line to other characters, though! (`patron_(fe)male_ally_vampirebat_killing_streak_01`, for reference)
 
+### Voiceline Examples
+
+(Github doesn't natively support playing audio, so you'll need to download the files if you want to hear the examples.)
+
+[An intro line using the correct character, but the wrong context](https://github.com/crigney3/DementiaLock/tree/main/Modified/HiddenKing/Intro/Rem/patron_male_ally_familiar_start_02.mp3)
+
+[An intro line using the wrong character, but the correct context](https://github.com/crigney3/DementiaLock/tree/main/Modified/HiddenKing/Intro/Celeste/patron_male_ally_unicorn_start_01.mp3)
+
 ## Compiling and Testing Your Voiceline(s)
 
 You don't need to submit compiled files; mp3s are what I'm looking for. I will handle compilation and submission.
