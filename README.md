@@ -68,7 +68,7 @@ Fork this repo and place the edited audio files into `Modified/path/to/specific/
 
 Remember:
 * You may not replace an existing modified line.
-* If you've added more variant lines, ensure their names contain "new_" at the start.
+* If you've added more variant lines, ensure they stick to the format mentioned above.
 * Make sure your PR only contains your changes, and not random spare files.
 * If you're adding files to NameCuts, keep that as a separate PR from adding modified lines. Also try to keep the name scheme in line.
 
