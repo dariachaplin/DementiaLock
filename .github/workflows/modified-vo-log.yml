@@ -34,7 +34,7 @@ jobs:
 
       - name: Generate ModifiedLinesLog.txt and Contributors.txt
         shell: pwsh
-        run: ./scripts/Generate-ModifiedLinesLog.ps1 -RepoRoot "${{ github.workspace }}"
+        run: ./GithubActionScripts/Generate-ModifiedLinesLog.ps1 -RepoRoot "${{ github.workspace }}"
 
       - name: Commit and push log
         run: |
