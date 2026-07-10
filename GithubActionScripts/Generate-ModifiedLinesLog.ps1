@@ -41,7 +41,9 @@
 param(
     [string]$RepoRoot = (Get-Location).Path,
 
-    [string]$ModifiedFolderName = 'Modified'
+    [string]$ModifiedFolderName = 'Modified',
+
+    [string]$OriginalsFolderName = 'Originals'
 )
 
 $modifiedPath = Join-Path $RepoRoot $ModifiedFolderName
@@ -147,8 +149,18 @@ function Add-TreeLines {
 # ---------------------------------------------------------------------------
 $rootNode = Get-Node -Path $modifiedPath -PathSegments @()
 
+$originalsPath = Join-Path $RepoRoot $OriginalsFolderName
+if (Test-Path $originalsPath) {
+    $originalsTotal = (Get-ChildItem -Path $originalsPath -Recurse -File -Filter '*.mp3' -ErrorAction SilentlyContinue).Count
+}
+else {
+    Write-Host "'$OriginalsFolderName' folder not found under $RepoRoot - using 0 as the total." -ForegroundColor Yellow
+    $originalsTotal = 0
+}
+
 $lines = [System.Collections.Generic.List[string]]::new()
 $lines.Add("Modified Lines Log - generated $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')")
+$lines.Add("$($rootNode.Total)/$originalsTotal Voicelines")
 $lines.Add("")
 Add-TreeLines -Node $rootNode -Prefix '' -IsLast $true -IsRoot $true -Lines $lines
 
@@ -212,7 +224,7 @@ else {
     $rank = 0
     foreach ($entry in $ranked) {
         $rank++
-        $bar = '#' * [Math]::Min($entry.Value, 25)
+        $bar = '#' * [Math]::Min($entry.Value, 50)
         $line = "{0,-6}{1,-$nameWidth}{2}  $bar" -f $rank, $entry.Key, $entry.Value
         $contribLines.Add($line)
     }
