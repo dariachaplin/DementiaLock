@@ -180,10 +180,22 @@ Write-Host "Wrote $logPath ($($rootNode.Total) total Voicelines found under $Mod
 function Get-FileAuthor {
     param([string]$FilePath)
 
-    $author = git -C $RepoRoot log --diff-filter=A --format='%an' -1 -- "$FilePath" 2>$null
+    # --follow traces this path's history across renames (e.g. after running
+    # Renumber-NameClips.ps1, which renames leftover clips), so credit goes
+    # to whoever originally added the content - not whoever's commit happens
+    # to have introduced its current filename.
+    $history = git -C $RepoRoot log --follow --format='%an' -- "$FilePath" 2>$null
+ 
+    $author = $null
+    if ($history) {
+        # git log lists newest-first, so the last line is the oldest commit
+        # in the followed history - i.e. the original add.
+        $author = $history | Select-Object -Last 1
+    }
+ 
     if (-not $author) {
-        # Fallback: no "added" entry found (e.g. shallow history) - fall
-        # back to whoever most recently touched the file.
+        # Fallback: no history found at all (e.g. shallow clone) - fall back
+        # to whoever most recently touched the file, better than nothing.
         $author = git -C $RepoRoot log --format='%an' -1 -- "$FilePath" 2>$null
     }
     if (-not $author) {
